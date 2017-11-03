@@ -14,7 +14,9 @@ RUN apk update \
 				   mailman-hyperkitty==1.1.0 \
 				   pymysql \
     && apk del build-deps \
-    && adduser -S mailman
+    # && adduser -S mailman \
+    && groupadd -r mailman --gid=999 \
+    && useradd -r -g mailman --uid=999 mailman
 
 # Change the working directory.
 WORKDIR /opt/mailman
